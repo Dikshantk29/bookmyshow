@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
 spring:
   application:
     name: bookmyshow
@@ -13,11 +13,12 @@ spring:
     open-in-view: false
 app:
   jwt:
-    secret: change-this-secret-key-to-a-long-random-string-min-32-chars
+    # Dev-only placeholder. In real deployments set the APP_JWT_SECRET environment variable.
+    secret: dev-only-secret-set-APP_JWT_SECRET-in-real-environments
     expiration-ms: 86400000
   seat-lock-minutes: 5
 ---
-# Run with: --spring.profiles.active=mysql  (create DB first: CREATE DATABASE bookmyshow;)
+# Run with: --spring.profiles.active=mysql
 spring:
   config:
     activate:
@@ -25,4 +26,4 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/bookmyshow?createDatabaseIfNotExist=true
     username: root
-    password: root
+    password: ${DB_PASSWORD:}

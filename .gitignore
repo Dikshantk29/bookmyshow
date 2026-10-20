@@ -1,0 +1,26 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# IDE settings
+.idea/
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Node dependencies and build output
+node_modules/
+dist/
+
+# Java build output
+**/target/
+
+# Local temporary files
+*.tmp
+*.swp

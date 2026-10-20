@@ -1,4 +1,17 @@
-target/
+# IntelliJ IDEA
 .idea/
 *.iml
-.vscode/
+
+# Maven build output
+target/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.*
+
+# Local configuration
+application-local.yml
+application-local.properties
