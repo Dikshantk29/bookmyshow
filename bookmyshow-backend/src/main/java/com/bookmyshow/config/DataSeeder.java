@@ -26,7 +26,7 @@ public class DataSeeder implements CommandLineRunner {
     public void run(String... args) {
         if (movieRepo.count() > 0) return;
 
-        user("Admin", "admin@bms.com", "admin123", Role.ADMIN);
+        user("Admin", "admin@bms.com", System.getenv().getOrDefault("ADMIN_PASSWORD", "admin123"), Role.ADMIN);
         user("Demo User", "user@bms.com", "user123", Role.USER);
 
         List<Movie> movies = List.of(

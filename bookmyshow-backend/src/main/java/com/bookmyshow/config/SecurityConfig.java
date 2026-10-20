@@ -16,6 +16,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.beans.factory.annotation.Value;
+import java.util.Arrays;
 
 import java.util.List;
 
@@ -43,10 +45,21 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration c = new CorsConfiguration();
+//        c.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:3000"));
+//        c.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+//        c.setAllowedHeaders(List.of("*"));
+//        UrlBasedCorsConfigurationSource s = new UrlBasedCorsConfigurationSource();
+//        s.registerCorsConfiguration("/**", c);
+//        return s;
+//    }
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource(
+            @Value("${app.cors.allowed-origins:http://localhost:5173,http://localhost:3000}") String[] origins) {
         CorsConfiguration c = new CorsConfiguration();
-        c.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:3000"));
+        c.setAllowedOrigins(Arrays.asList(origins));
         c.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         c.setAllowedHeaders(List.of("*"));
         UrlBasedCorsConfigurationSource s = new UrlBasedCorsConfigurationSource();
