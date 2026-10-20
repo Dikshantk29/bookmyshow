@@ -1,0 +1,28 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: bookmyshow
+  datasource:
+    url: jdbc:h2:mem:bms;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+app:
+  jwt:
+    secret: change-this-secret-key-to-a-long-random-string-min-32-chars
+    expiration-ms: 86400000
+  seat-lock-minutes: 5
+---
+# Run with: --spring.profiles.active=mysql  (create DB first: CREATE DATABASE bookmyshow;)
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/bookmyshow?createDatabaseIfNotExist=true
+    username: root
+    password: root
