@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.time.OffsetDateTime;
 
 public class Dto {
     public record RegisterReq(@NotBlank String name, @Email @NotBlank String email,
@@ -28,5 +29,5 @@ public class Dto {
     public record BookingRes(Long id, String bookingRef, String status, Long showId, String movieTitle,
                              String theatreName, String city, String screenName, LocalDateTime startTime,
                              List<String> seats, BigDecimal totalAmount, LocalDateTime createdAt,
-                             LocalDateTime expiresAt) {}
+                             OffsetDateTime expiresAt) {}
 }

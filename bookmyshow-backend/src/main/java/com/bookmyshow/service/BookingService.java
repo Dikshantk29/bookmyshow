@@ -13,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
-
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 @Service
 @RequiredArgsConstructor
 public class BookingService {
@@ -139,7 +140,7 @@ public class BookingService {
 
     private BookingRes toRes(Booking b) {
         Show s = b.getShow();
-        LocalDateTime expiresAt = b.getStatus() == BookingStatus.PENDING ? b.getCreatedAt().plusMinutes(lockMinutes) : null;
+        OffsetDateTime expiresAt = b.getStatus() == BookingStatus.PENDING ? OffsetDateTime.of(b.getCreatedAt(), ZoneId.systemDefault()).plusMinutes(lockMinutes) : null;
         return new BookingRes(b.getId(), b.getBookingRef(), b.getStatus().name(), s.getId(),
                 s.getMovie().getTitle(), s.getTheatre().getName(), s.getTheatre().getCity(),
                 s.getScreenName(), s.getStartTime(), Arrays.asList(b.getSeatNumbers().split(",")),
