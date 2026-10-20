@@ -10,6 +10,7 @@ export default function Navbar() {
       <nav>
         {user ? (
           <>
+            {user.role === 'ADMIN' && <Link to="/admin">Admin</Link>}
             <Link to="/my-bookings">My Bookings</Link>
             <span className="hello">Hi, {user.name.split(' ')[0]}</span>
             <button className="btn small" onClick={() => { logout(); navigate('/') }}>Logout</button>

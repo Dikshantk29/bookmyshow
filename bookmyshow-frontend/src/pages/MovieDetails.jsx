@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import api from '../api'
 
-const CITIES = ['Nagpur', 'Mumbai']
 const fmtDate = (d) => {
   const p = (n) => String(n).padStart(2, '0')
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`
@@ -13,13 +12,24 @@ export default function MovieDetails() {
   const navigate = useNavigate()
   const [movie, setMovie] = useState(null)
   const [shows, setShows] = useState([])
-  const [city, setCity] = useState(CITIES[0])
+  const [cities, setCities] = useState([])
+  const [city, setCity] = useState('')
   const [date, setDate] = useState(fmtDate(new Date()))
 
   const days = [0, 1, 2].map((i) => { const d = new Date(); d.setDate(d.getDate() + i); return d })
 
   useEffect(() => { api.get(`/movies/${id}`).then((r) => setMovie(r.data)) }, [id])
+
   useEffect(() => {
+    api.get('/theatres').then((r) => {
+      const list = [...new Set(r.data.map((t) => t.city))]
+      setCities(list)
+      if (list.length) setCity(list[0])
+    })
+  }, [])
+
+  useEffect(() => {
+    if (!city) return
     api.get(`/movies/${id}/shows`, { params: { city, date } }).then((r) => setShows(r.data))
   }, [id, city, date])
 
@@ -49,7 +59,7 @@ export default function MovieDetails() {
           ))}
         </div>
         <select value={city} onChange={(e) => setCity(e.target.value)}>
-          {CITIES.map((c) => <option key={c}>{c}</option>)}
+          {cities.map((c) => <option key={c}>{c}</option>)}
         </select>
       </div>
 

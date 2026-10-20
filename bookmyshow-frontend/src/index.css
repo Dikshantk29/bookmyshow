@@ -44,3 +44,11 @@ select { width: auto; margin: 0; }
 .badge { padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; background: #333846; }
 .badge.confirmed { background: #1f6f43; } .badge.pending { background: #8a6a12; } .badge.cancelled, .badge.expired { background: #7a2b2b; }
 @media (max-width: 600px) { .search { width: 150px; } .seat { width: 26px; height: 26px; font-size: 10px; } .seat-row { gap: 5px; } }
+.admin-form { max-width: 720px; }
+.field { display: block; margin-bottom: 12px; }
+.field span { display: block; font-size: 13px; color: #9a9aa5; margin-bottom: 4px; }
+.field input, .field select, .field textarea { width: 100%; margin: 0; }
+textarea { width: 100%; padding: 11px 12px; background: #0f1117; border: 1px solid #333846; border-radius: 8px; color: #fff; font-size: 15px; font-family: inherit; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.success { color: #3ddc84; }
+@media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
