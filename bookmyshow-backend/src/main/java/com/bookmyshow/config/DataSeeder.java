@@ -69,7 +69,8 @@ public class DataSeeder implements CommandLineRunner {
         Movie m = new Movie();
         m.setTitle(title); m.setDescription(desc); m.setGenre(genre); m.setLanguage(lang);
         m.setDurationMins(mins); m.setRating(rating); m.setReleaseDate(LocalDate.now().minusDays(30));
-        m.setPosterUrl("https://placehold.co/300x450?text=" + title.replace(" ", "+"));
+//        m.setPosterUrl("https://placehold.co/300x450?text=" + title.replace(" ", "+"));
+        m.setPosterUrl("/posters/" + title.toLowerCase().replaceAll("[^a-z0-9]+", "-") + ".jpg");
         return movieRepo.save(m);
     }
 
