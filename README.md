@@ -4,9 +4,6 @@ A full-stack movie ticket booking platform: browse movies, pick a show, choose s
 
 🔗 **Live demo:** [bookmyshow-neon-five.vercel.app](https://bookmyshow-neon-five.vercel.app)
 
-**video:**
-<video controls src="https://raw.githubusercontent.com/Dikshantk29/bookmyshow/main/bookmyshow-frontend/public/posters/bookmyshow.mp4"></video>
-
 📘 **API docs (Swagger):** `https://<your-backend-url>/swagger-ui.html`
 
 > ⏳ The backend runs on a free tier and sleeps when idle, so the **first load can take up to a minute**. Demo login: `user@bms.com` / `user123` (or register your own account).
